@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textbook Lesson Blueprint — Energy and Efficiency in Cells</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ----- BLUEPRINT: Textbook layout variables ----- */
+    :root {
+      --textbook-text: #1B1F29;
+      --textbook-muted: #1B1F29;
+      --textbook-bg: #fff;
+      /* Box themes and colors (by logic):
+         Framing (intro/summary): light grey #F3F7FC — objectives, Key Points.
+         Core (definition, concept): warm orange #FFF6ED — key term, Concept.
+         Application (examples): light pink #FFE8E8 — Examples block.
+         Interest (did you know): light blue #F1FBFF — Did you know. */
+      --box-framing: #F3F7FC;
+      --box-core: #FFF6ED;
+      --box-application: #FFE8E8;
+      --box-interest: #F1FBFF;
+      --accent: #1B1F29;
+      --heading-color: #1B1F29;
+      --pullquote-color: #1B1F29;
+      --max-width: 42rem;
+      --spacing-unit: 1.25rem;
+      --indent: 1.5rem;
+      --box-padding: 1.25rem 1.5rem;
+      --box-radius: 12px;
+      --font-body: 'Outfit', sans-serif;
+      --font-formula: 'Lora', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--font-body);
+      font-size: 12pt;
+      line-height: 1.6;
+      color: var(--textbook-text);
+      background: var(--textbook-bg);
+      margin: 0;
+      padding: var(--spacing-unit) 2rem 3rem;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ----- 1. CHAPTER NUMBER (small, uppercase or muted) ----- */
+    .chapter-number {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+      text-align: center;
+    }
+
+    /* ----- 2. CHAPTER TITLE (main title, centered) ----- */
+    .chapter-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      text-align: left;
+      margin: 0 0 1.5rem 0;
+    }
+
+    /* ----- 3. LEARNING OBJECTIVES BOX ----- */
+    .learning-objectives {
+      background: var(--box-framing);
+      border-radius: var(--box-radius);
+      padding: var(--box-padding);
+      margin-bottom: 2rem;
+    }
+    .learning-objectives .box-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--heading-color);
+      margin: 0 0 0.5rem 0;
+    }
+    .learning-objectives ul {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .learning-objectives li {
+      margin-bottom: 0.25rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .learning-objectives li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--heading-color);
+      font-weight: 700;
+    }
+
+    /* ----- 4. SECTION HEADING (e.g., 1., 2., 3.) ----- */
+    .section-heading {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin-top: 2.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ----- 5. BODY PARAGRAPH (default: left-aligned, optional justify) ----- */
+    .body-text {
+      margin: 0 0 1rem 0;
+      text-align: left;
+    }
+    .body-text.text-justify { text-align: justify; }
+    .body-text.text-center { text-align: center; }
+
+    /* ----- 6. INLINE BOLD (key terms) ----- */
+    .term { font-weight: 600; color: var(--textbook-text); }
+
+    /* ----- Explain term (underline + search icon; backend will link to chatbot) ----- */
+    .explain-term {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+    }
+    .explain-term::after {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-left: 4px;
+      vertical-align: middle;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B1F29' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* ----- 7. ITALIC (emphasis, quotes) ----- */
+    .emphasis { font-style: italic; }
+
+    /* ----- 8. BULLET LIST (indented) ----- */
+    .bullet-list {
+      margin: 0.75rem 0 1.25rem 0;
+      padding-left: 1.5rem;
+      list-style-type: disc;
+    }
+    .bullet-list li { margin-bottom: 0.2rem; }
+
+    /* ----- 9. PULL QUOTE (blockquote: centered, with optional attribution) ----- */
+    .pull-quote {
+      margin: 1.5rem 0;
+      text-align: center;
+      font-style: italic;
+      color: var(--pullquote-color);
+    }
+    .pull-quote .pull-quote-attribution {
+      display: block;
+      font-size: 0.9em;
+      font-style: normal;
+      margin-top: 0.35rem;
+      opacity: 0.9;
+    }
+
+    /* ----- Figure: image + caption ----- */
+    .figure {
+      margin: 1.75rem 0 2.25rem 0;
+    }
+    .figure img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    /* Captions: same style for figure and table */
+    .figure-caption,
+    .table-caption {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--textbook-text);
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    .figure-caption {
+      margin: 0.5rem 0 0 0;
+      padding-bottom: 0.25rem;
+      text-align: left;
+    }
+
+    /* ----- 10. KEY TERM BOX (term + definition) ----- */
+    .key-term-box {
+      background: var(--box-core);
+      border-radius: var(--box-radius);
+      padding: var(--box-padding);
+      margin: 1.5rem 0;
+    }
+    .key-term-box .box-type-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--heading-color);
+      opacity: 0.7;
+      margin: 0 0 0.35rem 0;
+    }
+    .key-term-box .term-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading-color);
+      margin: 0 0 0.35rem 0;
+    }
+    .key-term-box .term-def {
+      margin: 0;
+    }
+
+    /* ----- 11. BOX TYPES (one color per type; consistent with textbook conventions) ----- */
+    .callout-box {
+      border-radius: var(--box-radius);
+      padding: var(--box-padding);
+      margin: 1.5rem 0;
+      border-left: none;
+    }
+    .callout-box.concept-box { background: var(--box-core); }
+    .callout-box.example-box { background: var(--box-application); }
+    .callout-box.did-you-know-box { background: var(--box-interest); }
+    .callout-box .box-type-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--heading-color);
+      opacity: 0.7;
+      margin: 0 0 0.35rem 0;
+    }
+    .callout-box .callout-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--heading-color);
+      margin: 0 0 0.5rem 0;
+    }
+    .callout-box .callout-body {
+      margin: 0 0 0.5rem 0;
+    }
+    .callout-box .callout-body:last-child { margin-bottom: 0; }
+
+    /* ----- 12. CENTERED EQUATION/FORMULA (serif italic) ----- */
+    .equation {
+      text-align: center;
+      font-family: var(--font-formula);
+      font-style: italic;
+      font-size: 1rem;
+      margin: 1.25rem 0;
+      letter-spacing: 0.02em;
+    }
+    .equation-block {
+      text-align: center;
+      margin: 1.25rem 0;
+      padding: 0.5rem 0;
+      font-family: var(--font-formula);
+      font-style: italic;
+    }
+    .equation-block code,
+    .equation code {
+      font-family: var(--font-formula);
+      font-style: italic;
+      font-size: 1rem;
+      background: transparent;
+      padding: 0;
+    }
+    .equation-inline {
+      text-align: center;
+      font-family: var(--font-formula);
+      font-style: italic;
+      font-size: 1rem;
+      margin: 0.25rem 0 0.5rem 0;
+    }
+    .equation-inline code {
+      font-family: var(--font-formula);
+      font-style: italic;
+      background: transparent;
+      padding: 0;
+    }
+
+    /* ----- 13. Worked example steps (distinct blocks, easy to parse) ----- */
+    .step-block {
+      margin: 1rem 0 0 0;
+      padding: 0.75rem 0 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+    }
+    .step-block:first-of-type { margin-top: 0.5rem; }
+    .step-block + .body-text { margin-top: 1.25rem; }
+
+    .worked-example {
+      margin: 1.75rem 0;
+      padding: 1.25rem 1.5rem;
+      background: var(--box-application);
+      border-radius: var(--box-radius);
+    }
+    .worked-example .worked-example-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--heading-color);
+      margin: 0 0 0.5rem 0;
+    }
+    .worked-example .example-part-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--heading-color);
+      margin: 1rem 0 0.35rem 0;
+    }
+    .worked-example .example-part-label:first-of-type { margin-top: 0.5rem; }
+    .step-label {
+      margin: 0 0 0.5rem 0;
+    }
+    .step-label .step-num {
+      font-weight: 700;
+      margin-right: 0.25rem;
+    }
+
+    /* ----- 15. SECTION SUMMARY (Key Points) — separate block ----- */
+    /* ----- Section Summary: single recap box ----- */
+    .section-summary {
+      margin: 3rem 0 0 0;
+      padding: var(--box-padding);
+      background: var(--box-framing);
+      border-radius: var(--box-radius);
+    }
+    .section-summary .summary-title {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--heading-color);
+      letter-spacing: 0.03em;
+      margin: 0 0 0.5rem 0;
+    }
+    .section-summary .summary-title + .summary-title { margin-top: 0.25rem; }
+    .section-summary ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      list-style-type: disc;
+    }
+    .section-summary li { margin-bottom: 0.25rem; }
+    .section-summary li:last-child { margin-bottom: 0; }
+
+    /* ----- Vocabulary: open list, no box ----- */
+    .vocabulary {
+      margin: 3rem 0 0 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(27, 31, 41, 0.12);
+    }
+    .vocabulary .vocab-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--heading-color);
+      margin: 0 0 1rem 0;
+    }
+    .vocab-item { margin-bottom: 0.75rem; }
+    .vocab-item:last-child { margin-bottom: 0; }
+    .vocab-item .vocab-term {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--heading-color);
+    }
+    .vocab-item .vocab-def {
+      margin: 0.2rem 0 0 var(--indent);
+      font-size: 0.95rem;
+      text-indent: calc(-1 * var(--indent));
+      margin-left: var(--indent);
+    }
+
+    /* ----- Table (supports multiple content scenarios) ----- */
+    .table-wrap { margin: 2rem 0; }
+    .table-caption {
+      margin-top: 0.75rem;
+      margin-bottom: 0;
+    }
+    .table-footnote {
+      font-size: 0.8rem;
+      opacity: 0.75;
+      margin-top: 0.5rem;
+      margin-bottom: 0.25rem;
+      color: var(--textbook-text);
+    }
+    .textbook-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: var(--box-radius);
+      overflow: hidden;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+    .textbook-table th,
+    .textbook-table td {
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .textbook-table th {
+      font-weight: 600;
+      color: var(--heading-color);
+      background: rgba(0, 0, 0, 0.04);
+      border-bottom: 1px solid rgba(27, 31, 41, 0.15);
+    }
+    .textbook-table td.num,
+    .textbook-table th.num { text-align: right; }
+    .textbook-table.zebra tbody tr:nth-child(even) { background: rgba(0, 0, 0, 0.02); }
+
+    /* Spacing between major sections */
+    .section { margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- CHAPTER OPENING -->
+  <h1 class="chapter-title">Energy and Efficiency in Cells</h1>
+
+  <!-- LEARNING OBJECTIVES -->
+  <div class="learning-objectives">
+    <p class="box-title">Learning Objectives</p>
+    <p style="margin:0 0 0.5rem 0;">By the end of this lesson, you should be able to:</p>
+    <ul>
+      <li>Define biological energy.</li>
+      <li>Explain the role of ATP in storing cellular energy.</li>
+      <li>Calculate efficiency using an energy equation.</li>
+      <li>Interpret simple energy calculations in biological systems.</li>
+    </ul>
+  </div>
+
+  <!-- 1 -->
+  <h2 class="section-heading">1. What Is Energy?</h2>
+  <p class="body-text">
+    <span class="term">Energy</span> is the capacity to perform work or cause change. In biological systems, energy allows organisms to maintain order, grow, reproduce, and respond to their environment.
+  </p>
+  <p class="body-text">
+    Living cells constantly transform energy from one form to another.
+  </p>
+  <p class="body-text">
+    Examples of cellular activities that require energy include:
+  </p>
+  <ul class="bullet-list">
+    <li>muscle contraction</li>
+    <li>transport of molecules across membranes</li>
+    <li>synthesis of proteins</li>
+    <li>cell division</li>
+  </ul>
+  <blockquote class="pull-quote">
+    <span class="emphasis">"Life depends on continuous energy transformation."</span>
+    <cite class="pull-quote-attribution">— a central principle in biology</cite>
+  </blockquote>
+
+  <div class="key-term-box">
+    <p class="box-type-label">Definition</p>
+    <p class="term-name">Energy</p>
+    <p class="term-def">The ability of a system to perform work or produce change.</p>
+  </div>
+
+  <!-- 2 -->
+  <h2 class="section-heading">2. ATP — The Energy Currency of the Cell</h2>
+  <p class="body-text">
+    Cells store usable energy primarily in a molecule called <span class="explain-term"><span class="term">ATP</span></span> (adenosine triphosphate).
+  </p>
+  <p class="body-text">
+    ATP contains three phosphate groups. When one phosphate bond is broken, energy is released for cellular work.
+  </p>
+  <p class="body-text">
+    The basic ATP reaction can be represented as:
+  </p>
+  <div class="equation-block">
+    <code>ATP → ADP + P + energy</code>
+  </div>
+  <p class="body-text">
+    Approximately <span class="term">30.5 kJ/mol</span> of energy is released during this reaction.
+  </p>
+
+  <figure class="figure">
+    <img src="atp-mitochondrion.jpg" alt="Diagram of a mitochondrion, the organelle where ATP is produced in the cell">
+    <figcaption class="figure-caption">Figure 1. Mitochondrion. Most ATP is produced here through cellular respiration.</figcaption>
+  </figure>
+
+  <div class="callout-box concept-box">
+    <p class="box-type-label">Concept</p>
+    <p class="callout-title">ATP and cellular energy</p>
+    <p class="callout-body">ATP functions like a rechargeable battery. Energy is stored when ATP is formed. Energy is released when ATP is broken into ADP. Cells constantly recycle ATP molecules.</p>
+  </div>
+
+  <!-- 3 -->
+  <h2 class="section-heading">3. Energy Efficiency</h2>
+  <p class="body-text">
+    Not all energy in biological reactions becomes useful work. Some energy is always lost as heat.
+  </p>
+  <p class="body-text">
+    Scientists measure this using the concept of <span class="term">efficiency</span>.
+  </p>
+  <p class="body-text">
+    The efficiency equation is:
+  </p>
+  <div class="equation-block">
+    <code>Efficiency = (Useful Energy Output ÷ Total Energy Input) × 100</code>
+  </div>
+
+  <div class="worked-example">
+    <p class="worked-example-title">Examples</p>
+    <p class="example-part-label">Worked example</p>
+    <p class="body-text">
+      A biological process receives <span class="term">500 joules</span> of energy from glucose.
+      Only <span class="term">150 joules</span> are converted into useful ATP energy.
+    </p>
+    <div class="step-block">
+      <p class="step-label"><span class="step-num">Step 1:</span> Insert the values into the formula</p>
+      <p class="equation-inline"><code>Efficiency = (150 ÷ 500) × 100</code></p>
+    </div>
+    <div class="step-block">
+      <p class="step-label"><span class="step-num">Step 2:</span> Solve</p>
+      <p class="equation-inline"><code>Efficiency = 30%</code></p>
+    </div>
+    <p class="body-text">
+      Therefore, the reaction is <span class="term">30% efficient</span>.
+    </p>
+    <p class="example-part-label">Muscle efficiency</p>
+    <p class="body-text">Human muscles convert chemical energy into movement with an efficiency of roughly 20–25%. The remaining energy is released as heat, which helps regulate body temperature.</p>
+  </div>
+
+  <!-- 4 -->
+  <h2 class="section-heading">4. Energy Stored in Food</h2>
+  <p class="body-text">
+    Food molecules contain stored chemical energy. One of the most important molecules is <span class="term">glucose (C₆H₁₂O₆)</span>.
+  </p>
+  <p class="body-text">
+    During <span class="explain-term"><span class="term">cellular respiration</span></span>, glucose reacts with oxygen to release energy.
+  </p>
+  <div class="equation-block">
+    <code>C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energy</code>
+  </div>
+  <p class="body-text">
+    This process allows cells to produce approximately:
+  </p>
+  <ul class="bullet-list">
+    <li><span class="term">36–38 ATP molecules</span> per glucose molecule</li>
+  </ul>
+
+  <div class="callout-box did-you-know-box">
+    <p class="box-type-label">Did you know?</p>
+    <p class="callout-title">ATP recycling in the body</p>
+    <p class="callout-body">Your body uses and regenerates its own weight in ATP molecules every day. However, ATP is constantly recycled rather than stored in large quantities.</p>
+  </div>
+
+  <!-- 5 -->
+  <h2 class="section-heading">5. Why Energy Is Lost</h2>
+  <p class="body-text">
+    Energy loss occurs because biological systems obey the <span class="explain-term"><span class="term">Second Law of Thermodynamics</span></span>.
+  </p>
+  <p class="body-text">
+    This law states that every energy transfer increases the overall disorder of the universe.
+  </p>
+  <p class="body-text">
+    As a result, some energy becomes unavailable for useful work and is released as <span class="term">heat</span>.
+  </p>
+
+  <!-- 6 -->
+  <h2 class="section-heading">6. Efficiency at a glance</h2>
+  <p class="body-text">
+    The tables below show how you can present different kinds of content: comparison data, numeric ranges, notes, and definitions.
+  </p>
+
+  <!-- Table scenario: comparison / reference (multi-column, caption, footnote) -->
+  <div class="table-wrap">
+    <table class="textbook-table zebra">
+      <thead>
+        <tr>
+          <th>Process</th>
+          <th class="num">Efficiency</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Glucose → ATP (cellular respiration)</td>
+          <td class="num">~40%</td>
+          <td>Much of the rest is lost as heat.</td>
+        </tr>
+        <tr>
+          <td>Muscle contraction</td>
+          <td class="num">20–25%</td>
+          <td>Remaining energy helps maintain body temperature.</td>
+        </tr>
+        <tr>
+          <td>Photosynthesis (light → chemical)</td>
+          <td class="num">~35%</td>
+          <td>Varies with light intensity and wavelength.</td>
+        </tr>
+        <tr>
+          <td>Electric power plant (coal)</td>
+          <td class="num">~33%</td>
+          <td>Included for comparison with biological systems.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 1. Approximate efficiency of selected biological processes.</p>
+  </div>
+
+  <!-- Table scenario: definition / key terms (2-column term–definition) -->
+  <div class="table-wrap">
+    <table class="textbook-table zebra">
+      <thead>
+        <tr>
+          <th>Molecule</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ATP</td>
+          <td>Stores and transfers usable energy in cells; broken down to ADP + P to release energy.</td>
+        </tr>
+        <tr>
+          <td>Glucose (C₆H₁₂O₆)</td>
+          <td>Main fuel for cellular respiration; broken down to produce ATP.</td>
+        </tr>
+        <tr>
+          <td>ADP</td>
+          <td>Formed when ATP loses a phosphate; can be rebuilt to ATP using energy from food.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-caption">Table 2. Key molecules in energy transfer.</p>
+  </div>
+
+  <!-- SECTION SUMMARY -->
+  <div class="section-summary">
+    <p class="summary-title">Key Points</p>
+    <ul>
+      <li>Energy powers all biological processes.</li>
+      <li>ATP is the main molecule used to store cellular energy.</li>
+      <li>Energy transfer in cells is never perfectly efficient.</li>
+      <li>Efficiency can be calculated using an energy ratio.</li>
+      <li>Some energy is always lost as heat.</li>
+    </ul>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="vocabulary">
+    <p class="vocab-title">Vocabulary</p>
+    <div class="vocab-item">
+      <span class="vocab-term">ATP</span><br>
+      <p class="vocab-def">A molecule that stores and transfers energy in living cells.</p>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">Efficiency</span><br>
+      <p class="vocab-def">The percentage of input energy converted into useful output.</p>
+    </div>
+    <div class="vocab-item">
+      <span class="vocab-term">Cellular Respiration</span><br>
+      <p class="vocab-def">A process that converts glucose into usable energy in the form of ATP.</p>
+    </div>
+  </div>
+
+</body>
+</html>
