@@ -4,6 +4,10 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/textbook-lesson-blueprint.html",
+      "destination": "/textbook-lesson-blueprint.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
