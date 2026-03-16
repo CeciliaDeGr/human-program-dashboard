@@ -16,12 +16,12 @@
       /* Box themes and colors (by logic):
          Framing (intro/summary): light grey #F3F7FC — objectives, Key Points.
          Core (definition, concept): warm orange #FFF6ED — key term, Concept.
-         Application (examples): light pink #FFE8E8 — Examples block.
-         Interest (did you know): light blue #F1FBFF — Did you know. */
+         Application (examples): light blue #F1FBFF — Examples block.
+         Interest (did you know): #E9E5FF — Did you know. */
       --box-framing: #F3F7FC;
       --box-core: #FFF6ED;
-      --box-application: #FFE8E8;
-      --box-interest: #F1FBFF;
+      --box-application: #F1FBFF;
+      --box-interest: #E9E5FF;
       --accent: #1B1F29;
       --heading-color: #1B1F29;
       --pullquote-color: #1B1F29;
@@ -35,6 +35,18 @@
     }
 
     * { box-sizing: border-box; }
+    ::selection {
+      background: rgba(255, 235, 120, 0.5);
+      color: var(--textbook-text);
+    }
+    ::-moz-selection {
+      background: rgba(255, 235, 120, 0.5);
+      color: var(--textbook-text);
+    }
+    .highlight {
+      background: rgba(255, 235, 120, 0.5);
+      border-radius: 2px;
+    }
     body {
       font-family: var(--font-body);
       font-size: 12pt;
@@ -46,6 +58,18 @@
       max-width: var(--max-width);
       margin-left: auto;
       margin-right: auto;
+    }
+    body,
+    body p, body h1, body h2, body li, body td, body th, body span, body code,
+    body .body-text, body .callout-body, body .callout-title,
+    body .term-name, body .term-def, body .vocab-term, body .vocab-def,
+    body .figure-caption, body .table-caption, body .table-footnote,
+    body .step-label, body .step-desc, body .example-part-label,
+    body .summary-title, body .box-title, body .box-type-label,
+    body .highlight, body blockquote, body figcaption,
+    body .learning-objectives, body .key-term-box, body .callout-box,
+    body .section-summary, body .vocabulary, body .worked-example, body .figure {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Crect x='3' y='10' width='16' height='6' rx='2' fill='%23FFEB78' stroke='%23D4C234' stroke-width='1' opacity='0.95' transform='rotate(-35 11 13)'/%3E%3C/svg%3E") 6 18, text;
     }
 
     /* ----- 1. CHAPTER NUMBER (small, uppercase or muted) ----- */
@@ -203,6 +227,17 @@
       opacity: 0.7;
       margin: 0 0 0.35rem 0;
     }
+    .key-term-box .box-type-label::before {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      vertical-align: middle;
+      background-color: #B8865A;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.60855 0.201351C7.66755 -0.0750519 8.06596 -0.0631386 8.10835 0.216297C8.59965 3.45525 10.9687 6.09249 14.1367 6.92698L15.5211 7.29164C15.8368 7.37483 15.8419 7.82127 15.5281 7.91159L13.9607 8.3627C10.885 9.24789 8.60206 11.8367 8.10853 14.999C8.06511 15.2772 7.66888 15.2894 7.60847 15.0143L7.58451 14.9052C6.89382 11.7608 4.55936 9.23416 1.47925 8.29743L0.234134 7.91876C-0.0818722 7.82265 -0.0765349 7.37341 0.241665 7.28484L1.30009 6.99022C4.47574 6.10628 6.89759 3.53161 7.58581 0.307875L7.60855 0.201351Z' fill='white'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.60855 0.201351C7.66755 -0.0750519 8.06596 -0.0631386 8.10835 0.216297C8.59965 3.45525 10.9687 6.09249 14.1367 6.92698L15.5211 7.29164C15.8368 7.37483 15.8419 7.82127 15.5281 7.91159L13.9607 8.3627C10.885 9.24789 8.60206 11.8367 8.10853 14.999C8.06511 15.2772 7.66888 15.2894 7.60847 15.0143L7.58451 14.9052C6.89382 11.7608 4.55936 9.23416 1.47925 8.29743L0.234134 7.91876C-0.0818722 7.82265 -0.0765349 7.37341 0.241665 7.28484L1.30009 6.99022C4.47574 6.10628 6.89759 3.53161 7.58581 0.307875L7.60855 0.201351Z' fill='white'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
     .key-term-box .term-name {
       font-weight: 700;
       font-size: 1rem;
@@ -232,6 +267,18 @@
       opacity: 0.7;
       margin: 0 0 0.35rem 0;
     }
+    .callout-box .box-type-label::before {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      vertical-align: middle;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.60855 0.201351C7.66755 -0.0750519 8.06596 -0.0631386 8.10835 0.216297C8.59965 3.45525 10.9687 6.09249 14.1367 6.92698L15.5211 7.29164C15.8368 7.37483 15.8419 7.82127 15.5281 7.91159L13.9607 8.3627C10.885 9.24789 8.60206 11.8367 8.10853 14.999C8.06511 15.2772 7.66888 15.2894 7.60847 15.0143L7.58451 14.9052C6.89382 11.7608 4.55936 9.23416 1.47925 8.29743L0.234134 7.91876C-0.0818722 7.82265 -0.0765349 7.37341 0.241665 7.28484L1.30009 6.99022C4.47574 6.10628 6.89759 3.53161 7.58581 0.307875L7.60855 0.201351Z' fill='white'/%3E%3C/svg%3E") no-repeat center / contain;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.60855 0.201351C7.66755 -0.0750519 8.06596 -0.0631386 8.10835 0.216297C8.59965 3.45525 10.9687 6.09249 14.1367 6.92698L15.5211 7.29164C15.8368 7.37483 15.8419 7.82127 15.5281 7.91159L13.9607 8.3627C10.885 9.24789 8.60206 11.8367 8.10853 14.999C8.06511 15.2772 7.66888 15.2894 7.60847 15.0143L7.58451 14.9052C6.89382 11.7608 4.55936 9.23416 1.47925 8.29743L0.234134 7.91876C-0.0818722 7.82265 -0.0765349 7.37341 0.241665 7.28484L1.30009 6.99022C4.47574 6.10628 6.89759 3.53161 7.58581 0.307875L7.60855 0.201351Z' fill='white'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+    .callout-box.concept-box .box-type-label::before { background-color: #B8865A; }
+    .callout-box.did-you-know-box .box-type-label::before { background-color: #8B7EC9; }
     .callout-box .callout-title {
       font-weight: 700;
       font-size: 0.95rem;
@@ -655,5 +702,53 @@
     </div>
   </div>
 
+  <script>
+    document.addEventListener('mouseup', function () {
+      var sel = window.getSelection();
+      if (!sel.rangeCount || sel.isCollapsed) return;
+
+      var range = sel.getRangeAt(0);
+
+      function inHighlight(n) {
+        while (n && n !== document.body) {
+          if (n.nodeType === 1 && n.classList && n.classList.contains('highlight')) return n;
+          n = n.parentNode;
+        }
+        return null;
+      }
+
+      var hStart = inHighlight(range.startContainer);
+      var hEnd = inHighlight(range.endContainer);
+      if (hStart && hStart === hEnd) {
+        var parent = hStart.parentNode;
+        parent.insertBefore(document.createTextNode(hStart.textContent), hStart);
+        parent.removeChild(hStart);
+        sel.removeAllRanges();
+        return;
+      }
+
+      var node = range.startContainer;
+      if (node !== range.endContainer || node.nodeType !== 3 || inHighlight(node)) {
+        sel.removeAllRanges();
+        return;
+      }
+
+      var full = node.textContent;
+      var a = full.slice(0, range.startOffset);
+      var b = full.slice(range.startOffset, range.endOffset);
+      var c = full.slice(range.endOffset);
+      if (!b) { sel.removeAllRanges(); return; }
+
+      var parent = node.parentNode;
+      var span = document.createElement('span');
+      span.className = 'highlight';
+      span.textContent = b;
+      parent.insertBefore(document.createTextNode(a), node);
+      parent.insertBefore(span, node);
+      if (c) parent.insertBefore(document.createTextNode(c), node);
+      parent.removeChild(node);
+      sel.removeAllRanges();
+    });
+  </script>
 </body>
 </html>
